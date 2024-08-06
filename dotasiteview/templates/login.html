@@ -1,0 +1,215 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login Page</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
+    <style media="screen">
+        *,
+        *:before,
+        *:after {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #000000;
+            background-image: url('{% static "img/banner/banner2.jpg" %}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .background {
+            width: 430px;
+            height: 520px;
+            position: absolute;
+            transform: translate(-50%,-50%);
+            left: 50%;
+            top: 50%;
+        }
+        .background .shape {
+            height: 200px;
+            width: 200px;
+            position: absolute;
+            border-radius: 50%;
+        }
+        form {
+            height: 600px;
+            width: 450px;
+            background-color: rgba(255,255,255,0.13);
+            position: absolute;
+            transform: translate(-50%,-50%);
+            top: 50%;
+            left: 50%;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.1);
+            box-shadow: 0 0 40px rgba(8,7,16,0.6);
+            padding: 50px 35px;
+        }
+        form * {
+            font-family: 'Poppins',sans-serif;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            outline: none;
+            border: none;
+        }
+        form h3 {
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 42px;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-top: 30px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        input {
+            display: block;
+            height: 40px;
+            width: 100%;
+            background-color: rgba(255,255,255,0.07);
+            border-radius: 3px;
+            padding: 0 10px;
+            margin-top: 2px;
+            font-size: 14px;
+            font-weight: 300;
+        }
+        ::placeholder {
+            color: #e5e5e5;
+        }
+        button {
+            margin-top: 14px;
+            width: 100%;
+            background-color: #ffffff;
+            color: #080710;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .social {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column; /* Упорядочивание кнопок по вертикали */
+            align-items: center; /* Центрирование кнопок */
+        }
+        .social .steam {
+            background-color: #171a21;
+            color: #ffffff;
+            width: 100%;
+            border-radius: 3px;
+            padding: 10px;
+            text-align: center;
+        }
+        .social .steam a {
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .social .steam a i {
+            margin-right: 8px;
+        }
+        .social .steam:hover {
+            background-color: #1b1f27;
+        }
+        .social .google {
+            background-color: #ffffff; /* Белый фон */
+            color: #000000; /* Черный текст */
+            border-radius: 3px;
+            padding: 10px;
+            text-align: center;
+            margin-top: 10px; /* Расстояние от кнопки Steam */
+            width: 100%;
+        }
+        .social .google a {
+            color: #000000; /* Черный текст */
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .social .google a img {
+            margin-right: 8px;
+            width: 20px; /* Размер иконки Google */
+            height: 20px;
+        }
+        .social .google:hover {
+            background-color: #f1f1f1; /* Легкий серый цвет при наведении */
+        }
+        .raindrop {
+            position: absolute;
+            width: 2px;
+            height: 15px;
+            background: rgba(255, 255, 255, 0.6);
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            from {
+                transform: translateY(-100px);
+            }
+            to {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <form method="post">
+        <h3>Авторизация</h3>
+        {% csrf_token %} 
+        <label for="username">Имя пользователя</label>
+        <input type="text" placeholder="Enter Username" id="username" name="username">
+
+        <label for="password">Пароль</label>
+        <input type="password" placeholder="Password" id="password" name="pass">
+
+        <button type="submit">Войти</button>
+
+        <a href="{% url 'signup' %}">Создать аккаунт</a>
+
+        <div class="social">
+            <div class="steam">
+                <a href="{% url 'social:begin' 'steam' %}">
+                    <i class="fab fa-steam"></i> Войти через Steam
+                </a>
+            </div>
+            <div class="google">
+                <a href="{% url 'social:begin' 'google-oauth2' %}">
+                    <img src="{% static 'C:\Users\Тимофей\Desktop\SiteOneDokar\dotasiteview\static\img\icon\Google__G__logo.svg.png' %}" alt="Google Logo"> Войти через Google
+                </a>
+            </div>
+        </div>
+    </form>
+    <div id="rain-container"></div>
+    <script>
+    const rainContainer = document.getElementById('rain-container');
+    const numberOfDrops = 100; 
+
+    for (let i = 0; i < numberOfDrops; i++) {
+        const drop = document.createElement('div');
+        drop.className = 'raindrop';
+        drop.style.left = `${Math.random() * 100}vw`;
+        drop.style.width = `${Math.random() * 2 + 1}px`;
+        drop.style.height = `${Math.random() * 15 + 10}px`;
+        drop.style.animationDuration = `${Math.random() * 2 + 1}s`;
+        rainContainer.appendChild(drop);
+    }
+    </script>
+</body>
+</html>

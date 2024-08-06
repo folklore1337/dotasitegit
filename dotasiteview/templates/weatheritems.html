@@ -1,0 +1,82 @@
+{% load static %}
+
+<style>
+    #weather-page .weather-image {
+        width: 150px; 
+        height: 150px;
+
+    }
+
+    #weather-page .single_delicious {
+        background-color: rgba(255, 255, 255, 0.8); 
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #weather-page .title-container {
+        min-height: 30px; 
+        text-align: center;
+    }
+
+    #weather-page .image-container {
+        text-align: center;
+        margin-top: 10px;
+        flex-grow: 1;
+    }
+
+    #weather-page .btn-container {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    #weather-page .btn-block {
+        width: 100%;
+    }
+
+    #weather-page .col-2 {
+        flex: 0 0 16.66%;
+        max-width: 16.66%;
+        padding-right: 5px;
+        box-sizing: border-box;
+        margin-bottom: 10px; 
+    }
+
+    #weather-page .row {
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    #weather-page .container {
+        overflow-x: hidden;
+    }  
+
+    #weather-page .background-image-container {
+        background-size: cover;
+        background-position: center;
+        padding: 350px;
+        border-radius: 10px;
+    }
+</style>
+
+<div id="weather-page" class="container">
+    <div class="row no-gutters">
+        {% for item in weather %}
+            <div class="col-2">
+                <div class="single_delicious text-center">
+                    <div class="title-container mt-3">
+                        <h3>{{ item.title }}</h3>
+                    </div>
+                    <div class="image-container">
+                        <img src="{{ MEDIA_URL }}{{ item.image.url }}" alt="" class="weather-image">
+                    </div>
+                    <div class="btn-container mt-3">
+                        <a href="{{ item.link_1 }}" class="btn btn-lis-skins btn-block" target="_blank">
+                            <img src="{% static 'C:\\Users\\Тимофей\\Desktop\\SiteOneDokar\\dotasiteview\\static\\logolisskins.svg' %}" alt=""> Lis Skins
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

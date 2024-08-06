@@ -1,0 +1,157 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+.footer {
+    padding: 10px 0;
+    background-color: #1a0d01;
+}
+
+.footer .footer_top {
+    padding: 20px 0;
+}
+
+.footer .footer_widget {
+    margin-bottom: 20px;
+}
+
+.footer .footer_title {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer ul li {
+    margin-bottom: 5px;
+}
+
+.footer ul li a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 14px;
+}
+
+.footer ul li a img {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+</style>
+
+<div class="slider_area">
+    <div class="slider_active owl-carousel">
+        <div class="single_slider d-flex align-items-center slider_bg_1 overlay" style="background-image: url('static/img/banner/banner.jpg');">
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-xl-9 col-md-9 col-md-12">
+                        <div class="slider_text text-center">
+                            <h3>Вы Можете Узнать Подробнее о<br />Героях DOTA 2</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="single_slider d-flex align-items-center slider_bg_2 overlay" style="background-image: url('static/img/banner/banner2.jpg');">
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-xl-9 col-md-9 col-md-12">
+                        <div class="slider_text text-center">
+                            <h3>О Героях, О Скинах<br />И Многом Другом</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="single_slider d-flex align-items-center slider_bg_3 overlay" style="background-image: url('static/img/banner/banner3.jpg');">
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-xl-9 col-md-9 col-md-12">
+                        <div class="slider_text text-center">
+                            <h3>Также удобная навигация<br />по Steam и Lis-Skins</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="about_area">
+
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="about_info_wrap">
+                    <h3>Коротко о сайте</h3>
+                    <span class="long_dash"></span>
+                    <p>На этом сайте, вы легко можете посмотреть героя и перейти на оригинальный сайт для ознакомления. Также удобная навигация по предметам Immortal и Arcana редкостей.</p>
+                    <p>Подключены ссылки на торговую площадку STEAM и сервис LIS-SKINS. Вам будет открываться актуальные ссылки на торговых площадках по выбору. Также под ссылками будет указаны минимальные цены предмета на данный момент.</p>
+                    <ul class="food_list">
+                        <li>
+                            <img src="{% static 'C:\Users\Тимофей\Desktop\SiteOneDokar\dotasiteview\static\img\svg_icon\network.svg' %}" alt="">
+                            <span>Удобный сайт(наверное)</span>
+                        </li>
+                        <li>
+                            <img src="{% static 'C:\Users\Тимофей\Desktop\SiteOneDokar\dotasiteview\static\img\svg_icon\tray.svg' %}" alt="">
+                            <span>Для ценителей доты</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about_img">
+                    <div class="img_1">
+                        <img src="{% static 'C:\Users\Тимофей\Desktop\SiteOneDokar\dotasiteview\static\img\about\big.png' %}" alt="">
+                    </div>
+                    <div class="small_img">
+                        <img src="{% static 'C:\Users\Тимофей\Desktop\SiteOneDokar\dotasiteview\static\img\about\small.gif' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <div class="footer_top">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-md-6 col-lg-3 ">
+                    </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6 col-lg-4 offset-xl-1">
+                    <div class="footer_widget">
+                        <h3 class="footer_title">
+                            Полезные ссылки:
+            </h3>
+                <ul>
+                    <li>
+                        <a href="https://steamcommunity.com/id/timsimpson3/" target="_blank">
+                            <img src="\static\img\Steam_Logo.png" alt="Steam Logo" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;">
+                                Мой Профиль STEAM
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://ru.dotabuff.com/players/215335290" target="_blank">
+                                    <img src="\static\img\favicon.ico" alt="Dotabuff Logo" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;">
+                                    Мой Профиль Dotabuff
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/folklore1337" target="_blank">
+                                    <img src="\static\img\githublogo.png" alt="Dotabuff Logo" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;">
+                                    Мой Профиль GitHub
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock %}

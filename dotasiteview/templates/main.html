@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    {% block title %}<title>Главная</title>{% endblock %}
+    <style>
+    .favorites-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .welcome-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        margin-right: 10px;
+    }
+
+    .welcome-text,
+    .username {
+        color: white;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .welcome-text {
+        font-size: 16px;
+        margin: 0;
+    }
+
+    .username {
+        font-size: 20px;
+        font-weight: bold;
+        margin: center;
+    }
+
+    .favorites-button, .Login_button, .Logout_button {
+        display: inline-block;
+        padding: 15px 30px;
+        font-size: 20px;
+        color: white;
+        background-color: rgba(26, 13, 1, 0.5);
+        border: 2px solid white;
+        border-radius: 10px;
+        text-decoration: none;
+        text-align: center;
+        transition: background-color 0.3s, border-color 0.3s;
+        margin-right: 10px;
+    }
+
+    .favorites-button:hover, .Login_button:hover, .Logout_button:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+        border-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .container {
+        text-align: right;
+    }
+    .menu-button {
+        display: inline-block;
+        padding: 15px 30px;
+        font-size: 20px;
+        color: white;
+        background-color: rgba(26, 13, 1, 0.5);
+        border: 2px solid #1a0d01;
+        border-radius: 10px;
+        text-decoration: none;
+        text-align: center;
+        transition: background-color 0.3s, border-color 0.3s;
+        margin-right: 10px;
+    }
+    .menu_button:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+        border-color: rgba(255, 255, 255, 0.7);
+    }
+    
+    </style>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% load static %}
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/gijgo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slicknav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<header>
+    <div class="header-area">
+        <div id="sticky-header" class="main-header-area">
+            <div class="container-fluid p-0">
+                <div class="header_bottom_border">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col-xl-3 col-lg-2">
+                            <div class="logo">
+                                <a href="{% url 'index' %}">
+                                    <img src="{% static 'img/logo.png' %}" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-7">
+                            <div class="main-menu d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a class="menu-button" href="{% url 'index' %}">Главная</a></li>
+                                        <li><a class="menu-button" href="{% url 'heroes' %}">Герои</a></li>
+                                        <li><a class="menu-button" href="{% url 'skins' %}">Скины</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                            <div class="favorites-container">
+                                {% if user.is_authenticated %}
+                                    <div class="welcome-container">
+                                        <p class="welcome-text">Добро пожаловать,</p>
+                                        <p class="username">{{ user.username }}</p>
+                                    </div>
+                                    <a href="{% url 'favorites' %}" class="favorites-button">Избранное</a>
+                                    <a href="{% url 'logout' %}" class="Logout_button">Выйти</a>
+                                {% else %}
+                                    <a href="{% url 'login' %}" class="Login_button">Войти</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+{% block content %}{% endblock %}
+
+<script src="{% static 'js/vendor/modernizr-3.5.0.min.js' %}"></script>
+<script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'js/ajax-form.js' %}"></script>
+<script src="{% static 'js/waypoints.min.js' %}"></script>
+<script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+<script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+<script src="{% static 'js/scrollIt.js' %}"></script>
+<script src="{% static 'js/jquery.scrollUp.min.js' %}"></script>
+<script src="{% static 'js/wow.min.js' %}"></script>
+<script src="{% static 'js/gijgo.min.js' %}"></script>
+<script src="{% static 'js/nice-select.min.js' %}"></script>
+<script src="{% static 'js/jquery.slicknav.min.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+
+<script src="{% static 'js/contact.js' %}"></script>
+<script src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
+<script src="{% static 'js/jquery.form.js' %}"></script>
+<script src="{% static 'js/jquery.validate.min.js' %}"></script>
+<script src="{% static 'js/mail-script.js' %}"></script>
+
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>

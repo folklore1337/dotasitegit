@@ -1,0 +1,19 @@
+<div class="row">
+    {% for item in attribute %}
+    <div class="col-xl-6 col-md-6 col-lg-6">
+        <div class="single_delicious d-flex align-items-center">
+            <div class="text-center">
+                <img src="{{ MEDIA_URL }}{{ item.image.url }}" alt="{{ item.title }}">
+            </div>
+            <div class="text-center">
+                <h3>{{ item.title }}</h3>
+                <div>{{ item.description }}</div>
+                {% if item.link %}
+                <a href="{{ item.link }}" class="btn btn-dark" target="_blank">Посмотреть героя</a>
+                <a href="{{ item.link_dotabuff }}" class="btn btn-danger" target="_blank">Dotabuff героя</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>

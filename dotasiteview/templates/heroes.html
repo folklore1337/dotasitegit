@@ -1,0 +1,83 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block title %}<title>Герои</title>{% endblock %}
+{% block content %}
+
+<div class="bradcam_area bradcam_bg_1" style="background-image: url('static/img/banner/bradcam.jpg'); background-size: cover; height: 500px">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text text-center">
+                    <h3 style="position: relative; top: -90px;">Герои</h3> 
+                    <h3 style="font-size: 24px; position: relative; top: -60px;">В доте существует 123 различных героя с уникальными способностями, аспектами и врожденными способностями!</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="tablist_menu">
+            <div class="row">
+                <div class="col-xl-12">
+                    <ul class="nav justify-content-center" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="pills-str-tab" data-toggle="pill" href="#pills-str" role="tab" aria-controls="pills-str" aria-selected="true">
+                                <div class="single_menu text-center">
+                                    <div class="icon">
+                                        <img src="static/img/icon/hero_strength.png" alt="Сила" style="width: 50px; height: 50px;">
+                                    </div>
+                                    <h4 style="color: white;">Сила</h4>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-agi-tab" data-toggle="pill" href="#pills-agi" role="tab" aria-controls="pills-agi" aria-selected="false">
+                                <div class="single_menu text-center">
+                                    <div class="icon">
+                                        <img src="static/img/icon/hero_agility.png" alt="Ловкость" style="width: 50px; height: 50px;">
+                                    </div>
+                                    <h4 style="color: white;">Ловкость</h4>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-int-tab" data-toggle="pill" href="#pills-int" role="tab" aria-controls="pills-int" aria-selected="false">
+                                <div class="single_menu text-center">
+                                    <div class="icon">
+                                        <img src="static/img/icon/hero_intelligence.png" alt="Интеллект" style="width: 50px; height: 50px;">
+                                    </div>
+                                    <h4 style="color: white;">Интеллект</h4>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-uni-tab" data-toggle="pill" href="#pills-uni" role="tab" aria-controls="pills-uni" aria-selected="false">
+                                <div class="single_menu text-center">
+                                    <div class="icon">
+                                        <img src="static/img/icon/hero_universal.png" alt="Универсальность" style="width: 50px; height: 50px;">
+                                    </div>
+                                    <h4 style="color: white;">Универсал</h4>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-str" role="tabpanel" aria-labelledby="pills-str-tab" style="background-color: #d3d3d3;">
+        {% include 'menuitems.html' with attribute=attribute_str %}
+    </div>
+    <div class="tab-pane fade" id="pills-agi" role="tabpanel" aria-labelledby="pills-agi-tab" style="background-color: #d3d3d3;">
+        {% include 'menuitems.html' with attribute=attribute_agi %}
+    </div>
+    <div class="tab-pane fade" id="pills-int" role="tabpanel" aria-labelledby="pills-int-tab" style="background-color: #d3d3d3;">
+        {% include 'menuitems.html' with attribute=attribute_int %}
+    </div>
+    <div class="tab-pane fade" id="pills-uni" role="tabpanel" aria-labelledby="pills-uni-tab" style="background-color: #d3d3d3;">
+        {% include 'menuitems.html' with attribute=attribute_uni %}
+    </div>
+</div>
+
+{% endblock %}

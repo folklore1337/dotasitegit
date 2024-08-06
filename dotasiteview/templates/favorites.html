@@ -1,0 +1,138 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block title %}<title>Избранное</title>{% endblock %}
+{% block content %}
+
+<style>
+    .container {
+        margin-top: 50px;
+        padding: 30px;
+        background-color: rgba(255, 255, 255, 0.692);
+        border-radius: 10px;
+    }
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .media {
+        display: flex;
+        align-items: center; 
+    }
+    .media img {
+        border-radius: 10px;
+    }
+    .media-body {
+        margin-left: 50px;
+        text-align: center;
+    }
+    .media h5 {
+        margin-top: 0;
+    }
+    .btn-lis-skins, .btn-steam, .remove-favorite {
+        margin-top: 10px; 
+    }
+    .remove-favorite {
+        color: #ff6b6b;
+        cursor: pointer;
+        text-decoration: underline;
+        display: inline-block; 
+    }
+    .remove-favorite:hover {
+        color: #ff4c4c;
+    }
+    .btn-lis-skins {
+        background-color: orange;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px 10px;
+        border-radius: 5px;
+        text-decoration: none;
+        margin-right: 10px;
+    }
+    .btn-lis-skins img {
+        margin-right: 5px;
+    }
+    .btn-steam {
+        background-color: rgb(102, 102, 107);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px 10px;
+        border-radius: 5px;
+        text-decoration: none;
+        margin-right: 10px;
+    }
+    .btn-steam img {
+        margin-right: 5px;
+    }
+    .no-favorites {
+    text-align: left;
+    font-size: 18px;
+    margin-top: 20px;
+}
+</style>
+
+<div class="bradcam_area bradcam_bg_1" style="background-image: url('/static/img/banner/bradcam2.jpg'); background-size: cover; height: 1550px">
+    <div class="container"> 
+        <div class="row">
+            <div class="col-xl-12"> 
+                <h1>Избранное</h1>
+                <div class="row">
+                    {% if favorites %}
+                        {% for favorite in favorites %}
+                            {% if favorite.skins_item %}
+                                <div class="col-md-6 mb-4">
+                                    <div class="media">
+                                        <img src="{{ favorite.skins_item.image.url }}" class="mr-3" alt="{{ favorite.skins_item.title }}" width="200" height="200">
+                                        <div class="media-body">
+                                            <h5 class="mt-0 mb-1">{{ favorite.skins_item.title }}</h5>
+                                            <div class="btn-container mt-3">
+                                                <a href="{{ favorite.skins_item.link_1 }}" class="btn btn-lis-skins btn-block" target="_blank">
+                                                    <img src="{% static 'logolisskins.svg' %}" alt=""> Lis Skins
+                                                </a>
+                                                <a href="{{ favorite.skins_item.link }}" class="btn btn-steam btn-block mt-2" target="_blank">
+                                                    <img src="{% static 'steam-seeklogo.svg' %}" alt=""> Steam
+                                                </a>
+                                            </div>
+                                            <span class="remove-favorite" data-id="{{ favorite.skins_item.id }}">Удалить из избранного</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <div class="col-12 no-favorites">
+                            <p>У вас нет избранных предметов</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.remove-favorite').click(function() {
+            const itemId = $(this).data('id');
+            const button = $(this);
+
+            $.ajax({
+                url: `/remove_from_favorites/skins/${itemId}/`,
+                method: 'POST',
+                headers: {'X-CSRFToken': '{{ csrf_token }}'},
+                success: function(response) {
+                    if (response.status === 'removed') {
+                        button.closest('.media').remove(); 
+                    }
+                }
+            });
+        });
+    });
+</script>
+
+{% endblock %}
